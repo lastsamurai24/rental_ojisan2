@@ -44,6 +44,7 @@
         <label class="form-check-label" for="ojisan">
             おじさんとして登録
         </label>
+        //変更点
     </div>
 </div>
         <div class="flex items-center justify-end mt-4">
