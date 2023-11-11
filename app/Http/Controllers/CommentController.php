@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
-
+use App\Models\Post;
 class CommentController extends Controller
 {
     /**
@@ -19,17 +19,30 @@ class CommentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Post $post)
     {
-        //
+        return view('comments.create', compact('post'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCommentRequest $request)
+    public function store(StoreCommentRequest $request, Post $post)
     {
-        //
+        $comment = new Comment($request->all());
+        $comment->user_id = $request->user()->id;
+
+        try {
+            // 登録
+            $post->comments()->save($comment);
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors($e->getMessage());
+        }
+
+        return redirect()
+            ->route('posts.show', $post)
+            ->with('notice', 'コメントを登録しました');
+        
     }
 
     /**

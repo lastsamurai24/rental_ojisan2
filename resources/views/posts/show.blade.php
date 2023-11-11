@@ -10,6 +10,7 @@
             @if ($prefName)
                 <h1>都道府県: {{ $prefName }}</h1>
             @endif
+            
             <p class="text-sm mb-2 md:text-base font-normal text-gray-600">
                 <span
                     class="text-red-400 font-bold">{{ date('Y-m-d H:i:s', strtotime('-1 day')) < $post->created_at ? 'NEW' : '' }}</span>
@@ -35,8 +36,10 @@
             <hr class="my-4">
 
             <div class="flex justify-end">
-                <a href="{{ route('posts.comments.create', $post) }}" class="bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block">コメント登録</a>
+                <a href="{{ route('posts.comments.create', $post) }}"
+                    class="bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block">コメントする</a>
             </div>
         @endauth
-    </div>
+        </div>
+        
 </x-app-layout>

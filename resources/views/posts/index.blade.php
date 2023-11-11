@@ -8,6 +8,8 @@
                     <option value="{{ $index }}">{{ $name }}</option>
                 @endforeach
             </select>
+            <button type="submit" style="background-color: rgb(249, 249, 255); color: rgb(7, 1, 1); padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">検索</button>
+
         </form>
     <div class="container max-w-7xl mx-auto px-4 md:px-12 pb-3 mt-3">
         <div class="flex flex-wrap -mx-1 lg:-mx-4 mb-4">
@@ -31,4 +33,8 @@
         </div>
         {{ $posts->links() }}
     </div>
+
+    <hr class="my-4">
+
+    
 </x-app-layout>
