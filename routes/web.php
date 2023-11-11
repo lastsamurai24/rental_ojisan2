@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +37,7 @@ Route::resource('posts', PostController::class)
     Route::get('/posts', [PostController::class, 'index'])
     ->name('posts.index');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::resource('posts.comments', CommentController::class)
+    ->only(['create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware('auth');
 require __DIR__.'/auth.php';

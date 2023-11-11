@@ -31,5 +31,12 @@
                 </form>
             @endcan
         </div>
+        @auth
+            <hr class="my-4">
+
+            <div class="flex justify-end">
+                <a href="{{ route('posts.comments.create', $post) }}" class="bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block">コメント登録</a>
+            </div>
+        @endauth
     </div>
 </x-app-layout>
