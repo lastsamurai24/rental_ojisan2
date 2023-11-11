@@ -46,6 +46,7 @@ public function store(Request $request): RedirectResponse
         'password' => Hash::make($request->password),
         // Use the $request variable to check if 'ojisan' is set
         'ojisan' => $request->input('ojisan') == '1' ? 1 : 0,
+        
     ]);
 
     event(new Registered($user));

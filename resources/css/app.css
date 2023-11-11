@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.background-image {
+    background-image: url('/Users/machideratsubasa/Downloads/chase-baker-yvb8NrIhIFI-unsplash.jpg');
+    background-size: cover; /* 画像をカバーとして表示 */
+    background-repeat: no-repeat;
+}
