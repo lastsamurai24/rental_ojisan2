@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +30,10 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::resource('posts', PostController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
-
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::resource('posts', PostController::class)
     ->only(['show', 'index']);
+    Route::get('/posts', [PostController::class, 'index'])
+    ->name('posts.index');
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 require __DIR__.'/auth.php';

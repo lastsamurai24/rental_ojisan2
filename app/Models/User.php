@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
+
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'ojisan',
+        'image' => 'default_image.jpg',
     ];
 
     /**
@@ -51,6 +53,5 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    // app/Models/Post.php
 
 }

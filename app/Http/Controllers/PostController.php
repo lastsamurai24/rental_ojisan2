@@ -16,12 +16,14 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        
-        $posts = Post::latest()->paginate(4);
-        return view('posts.index', compact('posts'));
-    }
+public function index()
+{
+    $prefs = config('pref'); // pref.php から都道府県データを取得
+    $posts = Post::latest()->paginate(4);
+
+    return view('posts.index', compact('posts', 'prefs'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -98,11 +100,16 @@ class PostController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        $post = Post::find($id);
-
-        return view('posts.show', compact('post'));
-    }
+    { 
+    $post = Post::findOrFail($id); // データベースから投稿を取得
+    $categories = config('category'); // category.phpからカテゴリ配列を取得
+    $categoryName = $categories[$post->category_id] ?? '未定義のカテゴリー'; // カテゴリーIDに基づいて名前を取得
+    $prefs = config('pref'); // category.phpからカテゴリ配列を取得
+    $prefName = $prefs[$post->pref_id] ?? '未定義のカテゴリー'; // カテゴリーIDに基づいて名前を取得
+    // ビューにデータを渡す
+    return view('posts.show', compact('post', 'categoryName','prefName'));
+}
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -126,39 +133,5 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-        public function search(Request $request)
-{
-        $prefs = config('pref');
-        $categories = config('category');
-        $query = Post::query();
-
-        //$request->input()で検索時に入力した項目を取得します。
-        $search1 = $request->input('title');
-        $search2 = $request->input('pref');
-        $search3 = $request->input('category');
-
-         // タイトル入力フォームで入力した文字列を含むカラムを取得します
-        if ($search1!=null) {
-            $query->where('title', 'like', '%'.$search1.'%')->get();
-        }
-
-         // プルダウンメニューで指定なし以外を選択した場合、$query->whereで選択した都道府県と一致するカラムを取得します
-        if ($search2!=null) {
-            $query->where('pref_id', $search2)->get();
-        }
-
-         // プルダウンメニューで指定なし以外を選択した場合、$query->whereで選択した好きなカテゴリと一致するカラムを取得します
-        // if ($request->has('category'))
-        if ($search3!=null) {
-            $query->where('category_id', $search3)->get();
-        }
-
-        //ニュースを1ページにつき5件ずつ表示させます
-        $data = $query->paginate(5);
-
-        return view('posts.index',[
-            'prefs' => $prefs,'categories' => $categories,'data' => $data
-        ]);
     }
 }

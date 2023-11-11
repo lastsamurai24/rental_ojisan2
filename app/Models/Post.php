@@ -18,7 +18,12 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+        
     }
+
+
+
+    
     public function image_url()
     {
         return Storage::url('images/posts/' . $this->image);

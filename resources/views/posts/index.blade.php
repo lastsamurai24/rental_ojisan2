@@ -1,5 +1,15 @@
 <x-app-layout>
     <div class="container max-w-7xl mx-auto px-4 md:px-12 pb-3 mt-3">
+        <!-- 都道府県選択フォーム -->
+        <form method="GET" action="{{ route('search') }}" class="mb-4">
+            <select name="pref_id" onchange="this.form.submit()">
+                <option value="" hidden>都道府県▼</option>
+                @foreach ($prefs as $index => $name)
+                    <option value="{{ $index }}">{{ $name }}</option>
+                @endforeach
+            </select>
+        </form>
+    <div class="container max-w-7xl mx-auto px-4 md:px-12 pb-3 mt-3">
         <div class="flex flex-wrap -mx-1 lg:-mx-4 mb-4">
             @foreach ($posts as $post)
                 <article class="w-full px-4 md:w-1/2 text-xl text-gray-800 leading-normal">

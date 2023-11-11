@@ -25,7 +25,11 @@
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-gray-700 leading-5">
-                   
+                {!! __('pagination', [
+                        'total' => $paginator->total(),
+                        'from' => $paginator->firstItem() ,
+                        'to' => $paginator->lastItem()
+                    ]) !!}
                 </p>
             </div>
 
