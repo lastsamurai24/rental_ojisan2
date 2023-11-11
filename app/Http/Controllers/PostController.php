@@ -152,7 +152,7 @@ class PostController extends Controller
             // 他のフィールド
         ]);
 
-        return redirect()->route('posts.show', $post)->with('success', '記事が更新されました。');
+        return redirect()->route('posts.show', $post)->with('success', '紹介ページが更新されました。');
     }
 
     /**
