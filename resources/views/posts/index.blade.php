@@ -1,5 +1,11 @@
 <x-app-layout>
     <div class="container max-w-7xl mx-auto px-4 md:px-12 pb-3 mt-3">
+        <!-- 通知メッセージ -->
+        @if (session('success'))
+            <div class="alert alert-success" style="color: purple;">
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- 都道府県選択フォーム -->
         <form method="GET" action="{{ route('search') }}" class="mb-4">
             <select name="pref_id" onchange="this.form.submit()">
