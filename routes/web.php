@@ -27,16 +27,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::resource('posts', PostController::class)
+        ->except(['show', 'index']);
 });
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::resource('posts', PostController::class)
-    ->only(['create', 'store', 'edit', 'update', 'destroy'])
-    ->middleware('auth');
-Route::get('/search', [SearchController::class, 'index'])->name('search');
+
 Route::resource('posts', PostController::class)
     ->only(['show', 'index']);
-    Route::get('/posts', [PostController::class, 'index'])
-    ->name('posts.index');
+
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::resource('posts.comments', CommentController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
