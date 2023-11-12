@@ -41,4 +41,5 @@ Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::resource('posts.comments', CommentController::class)
     ->only(['create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
+
 require __DIR__.'/auth.php';

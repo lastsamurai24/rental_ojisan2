@@ -153,5 +153,7 @@
     "Event Start": "開始日時",
     "Event End": "終了日時",
     "Event Name": "タイトル",
-    "Description": "詳細"
+    "Description": "詳細",
+    "Sign Up": "新規登録",
+    "Create Post":"記事投稿"
 }

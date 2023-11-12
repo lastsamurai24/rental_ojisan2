@@ -11,7 +11,7 @@ class UpdateCommentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'body' => 'required|string|max:200',
+        ];
+    }
+    public function attributes()
+    {
+        return [
+            'body' => 'コメント',
         ];
     }
 }

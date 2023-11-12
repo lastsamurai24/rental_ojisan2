@@ -46,10 +46,11 @@
                         @endforeach
                     </select>
                 </div>
-                <div>
-                    <label class="block text-gray-700 text-sm mb-2">活動可能日時</label>
-                    <input type="date">
-                </div>
+     <div class="mb-4">
+        <label class="block text-gray-700 text-sm mb-2">活動可能日時</label>
+        <!-- 日付入力フィールドの追加 -->
+        <input type="date" name="active_date" class="form-input w-full" required>
+    </div>
 
 
             </div>
