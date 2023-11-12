@@ -43,6 +43,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
+            'active_date' => 'required|date',
         ]);
 
 
@@ -60,6 +61,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->user_id = $user->id;
+        $post->active_date = $request->active_date; // 日付データの保存
         $file = $request->file('image');
         $post->category_id = $request->category;
         $post->pref_id = $request->pref;
@@ -101,13 +103,14 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::findOrFail($id); // データベースから投稿を取得
+        $post = Post::with(['user'])->find($id); // データベースから投稿を取得
+        $comments = $post->comments()->latest()->get()->load(['user']);
         $categories = config('category'); // category.phpからカテゴリ配列を取得
         $categoryName = $categories[$post->category_id] ?? '未定義のカテゴリー'; // カテゴリーIDに基づいて名前を取得
         $prefs = config('pref'); // category.phpからカテゴリ配列を取得
         $prefName = $prefs[$post->pref_id] ?? '未定義のカテゴリー'; // カテゴリーIDに基づいて名前を取得
         // ビューにデータを渡す
-        return view('posts.show', compact('post', 'categoryName', 'prefName'));
+        return view('posts.show', compact('post', 'categoryName', 'prefName', 'comments'));
     }
 
 

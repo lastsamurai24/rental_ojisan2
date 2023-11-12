@@ -13,17 +13,22 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
+        'active_date', // 日付フィールドを追加
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
-        
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+     protected $dates = ['active_date']; // 日付をCarbonインスタンスに変換
 
 
-    
     public function image_url()
     {
         return Storage::url('images/posts/' . $this->image);

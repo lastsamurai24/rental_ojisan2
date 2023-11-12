@@ -1,3 +1,4 @@
+
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,9 +11,21 @@
                     </a>
                 </div>
                 <!-- Navigation Links -->
-                <div class="bg-sky-50 aspect-square hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="bg-sky-200 aspect-square hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('よくある質問') }}
+                    </x-nav-link>
+                </div>
+                <!-- Navigation Links -->
+                <div class="bg-sky-200 aspect-square hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('レンタルの流れ') }}
+                    </x-nav-link>
+                </div>
+                <div class="bg-sky-200 aspect-square hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('お問い合わせ') }}
+                        
                     </x-nav-link>
                 </div>
           
@@ -138,3 +151,4 @@
         </div>
     </div>
 </nav>
+

@@ -143,5 +143,17 @@
     "You're logged in!": "ログイン成功",
     "Your email address is unverified.": "メールアドレスが未認証です。",
     "Log In": "ログイン",
-    "pagination": ":total件中、:from〜:to件表示"
+    "pagination": ":total件中、:from〜:to件表示",
+    "Click here for registered users": "登録済みの方はこちら",
+    "Click here for new registration": "新規登録はこちら",
+    "Event Form": "登録フォーム",
+    "Event Update Form": "更新フォーム",
+    "Event Info": "予定詳細",
+    "AllDay": "終日",
+    "Event Start": "開始日時",
+    "Event End": "終了日時",
+    "Event Name": "タイトル",
+    "Description": "詳細",
+    "Sign Up": "新規登録",
+    "Create Post":"記事投稿"
 }
